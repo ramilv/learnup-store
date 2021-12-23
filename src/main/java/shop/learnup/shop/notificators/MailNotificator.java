@@ -1,11 +1,11 @@
-package shop.learnup.shopspringbootapp.notificators;
+package shop.learnup.shop.notificators;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import shop.learnup.shopspringbootapp.services.Notificator;
+import shop.learnup.shop.services.Notificator;
 
 @Service
 @Profile("!local")
