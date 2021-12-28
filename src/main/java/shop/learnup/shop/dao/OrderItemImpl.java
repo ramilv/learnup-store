@@ -1,29 +1,35 @@
-package shop.learnup.shop.services;
+package shop.learnup.shop.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import shop.learnup.shop.entities.OrderItemEntity;
+import shop.learnup.shop.entities.OrderItem;
 import shop.learnup.shop.repsitory.OrderItemRepository;
-import shop.learnup.shop.services.interfaces.OrderItemService;
+import shop.learnup.shop.dao.services.OrderItemService;
+
 import java.util.List;
 
 @Service
 public class OrderItemImpl implements OrderItemService {
+
+    private final OrderItemRepository orderItemRepository;
+
     @Autowired
-    private OrderItemRepository orderItemRepository;
+    public OrderItemImpl(OrderItemRepository orderItemRepository) {
+        this.orderItemRepository = orderItemRepository;
+    }
 
     @Override
-    public OrderItemEntity get(Integer id) {
+    public OrderItem get(Integer id) {
         return orderItemRepository.getById(id);
     }
 
     @Override
-    public OrderItemEntity create(OrderItemEntity order) {
+    public OrderItem create(OrderItem order) {
         return orderItemRepository.saveAndFlush(order);
     }
 
     @Override
-    public OrderItemEntity update(OrderItemEntity order) {
+    public OrderItem update(OrderItem order) {
         return orderItemRepository.saveAndFlush(order);
     }
 
@@ -33,7 +39,7 @@ public class OrderItemImpl implements OrderItemService {
     }
 
     @Override
-    public List<OrderItemEntity> getAll() {
+    public List<OrderItem> getAll() {
         return orderItemRepository.findAll();
     }
 }

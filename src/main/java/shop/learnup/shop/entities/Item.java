@@ -1,32 +1,36 @@
 package shop.learnup.shop.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name="items")
-public class ItemEntity {
+@Table(name = "items")
+public class Item {
 
-    public ItemEntity(String name, Double price, Boolean available) {
+    public Item(String name, Double price, int available) {
         this.name = name;
         this.price = price;
         this.available = available;
     }
 
-    public ItemEntity() {
+    public Item() {
     }
 
     @Id
     @GeneratedValue
-    protected Integer id;
+    private Integer id;
 
-    @Column(name="name")
-    protected String name;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name="price")
-    protected Double price;
+    @Column(name = "price")
+    private Double price;
 
-    @Column(name="available")
-    protected Boolean available;
+    @Column(name = "available")
+    private int available;
+
+    @OneToOne(mappedBy = "item", fetch = FetchType.EAGER)
+    private CartItem cartItem;
 
     public Integer getId() {
         return id;
@@ -40,8 +44,12 @@ public class ItemEntity {
         return price;
     }
 
-    public Boolean getAvailable() {
+    public int getAvailable() {
         return available;
+    }
+
+    public CartItem getCartItem() {
+        return cartItem;
     }
 
     public void setName(String name) {
@@ -52,7 +60,7 @@ public class ItemEntity {
         this.price = price;
     }
 
-    public void setAvailable(Boolean available) {
+    public void setAvailable(int available) {
         this.available = available;
     }
 }

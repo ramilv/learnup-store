@@ -1,4 +1,4 @@
-package shop.learnup.shop.services.interfaces;
+package shop.learnup.shop.dao.services;
 
 import java.util.List;
 

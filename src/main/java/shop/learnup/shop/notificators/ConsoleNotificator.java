@@ -2,7 +2,6 @@ package shop.learnup.shop.notificators;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-import shop.learnup.shop.services.Notificator;
 
 @Service
 @Profile("local")
