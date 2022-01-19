@@ -23,4 +23,36 @@ public class OrderDto {
 
     @JsonProperty
     private List<OrderItemDto> orderItems;
+
+    public int getId() {
+        return id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public List<OrderItemDto> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setOrderItems(List<OrderItemDto> orderItems) {
+        this.orderItems = orderItems;
+    }
 }

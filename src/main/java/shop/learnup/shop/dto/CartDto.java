@@ -20,4 +20,28 @@ public class CartDto {
 
     @JsonProperty
     private List<CartItemDto> cartItems;
+
+    public int getId() {
+        return id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public List<CartItemDto> getCartItems() {
+        return cartItems;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setCartItems(List<CartItemDto> cartItems) {
+        this.cartItems = cartItems;
+    }
 }

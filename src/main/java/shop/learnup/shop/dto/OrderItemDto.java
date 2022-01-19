@@ -31,4 +31,51 @@ public class OrderItemDto {
     @JsonProperty
     private OrderDto order;
 
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public OrderDto getOrder() {
+        return order;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public void setOrder(OrderDto order) {
+        this.order = order;
+    }
 }
