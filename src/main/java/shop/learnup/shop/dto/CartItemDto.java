@@ -1,5 +1,6 @@
 package shop.learnup.shop.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,10 +26,10 @@ public class CartItemDto {
     @JsonProperty
     private int cartId;
 
-    @JsonProperty
+    @JsonIgnore
     private CartDto cart;
 
-    @JsonProperty
+    @JsonIgnore
     private ItemDto item;
 
     public int getId() {

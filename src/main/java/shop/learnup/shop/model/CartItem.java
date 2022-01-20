@@ -1,20 +1,43 @@
 package shop.learnup.shop.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import javax.persistence.*;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
+@Table(name = "cart_items")
 public class CartItem {
 
+    public CartItem(int itemId, int qty, double price, int cartId) {
+        this.itemId = itemId;
+        this.qty = qty;
+        this.price = price;
+        this.cartId = cartId;
+    }
+
+    public CartItem() {
+    }
+
+    @Id
+    @GeneratedValue
     private int id;
+
+    @Column(name = "item_id")
     private int itemId;
+
+    @Column(name = "qty")
     private int qty;
+
+    @Column(name = "price")
     private double price;
+
+    @Column(name = "cart_id")
     private int cartId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Cart cart;
+
+    @OneToOne(optional = false)
+    @JoinColumn(name = "item_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Item item;
 
     public int getId() {
@@ -45,10 +68,6 @@ public class CartItem {
         return item;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setItemId(int itemId) {
         this.itemId = itemId;
     }
@@ -61,15 +80,8 @@ public class CartItem {
         this.price = price;
     }
 
-    public void setCartId(int cartId) {
+    public void setCartId(int cart_id) {
         this.cartId = cartId;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
 }

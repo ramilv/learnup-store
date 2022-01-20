@@ -1,5 +1,6 @@
 package shop.learnup.shop.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,7 +29,7 @@ public class OrderItemDto {
     @JsonProperty
     private double total;
 
-    @JsonProperty
+    @JsonIgnore
     private OrderDto order;
 
     public int getOrderId() {
@@ -78,4 +79,5 @@ public class OrderItemDto {
     public void setOrder(OrderDto order) {
         this.order = order;
     }
+
 }

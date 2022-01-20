@@ -1,18 +1,34 @@
 package shop.learnup.shop.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import javax.persistence.*;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
+@Table(name = "items")
 public class Item {
 
+    public Item(String name, Double price, int available) {
+        this.name = name;
+        this.price = price;
+        this.available = available;
+    }
+
+    public Item() {
+    }
+
+    @Id
+    @GeneratedValue
     private Integer id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "price")
     private Double price;
+
+    @Column(name = "available")
     private int available;
+
+    @OneToOne(mappedBy = "item", fetch = FetchType.EAGER)
     private CartItem cartItem;
 
     public Integer getId() {
@@ -35,10 +51,6 @@ public class Item {
         return cartItem;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -49,9 +61,5 @@ public class Item {
 
     public void setAvailable(int available) {
         this.available = available;
-    }
-
-    public void setCartItem(CartItem cartItem) {
-        this.cartItem = cartItem;
     }
 }

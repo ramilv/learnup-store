@@ -1,20 +1,31 @@
 package shop.learnup.shop.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
+@Table(name = "orders")
 public class Order {
+    public Order(Date date, int userId) {
+        this.date = date;
+        this.userId = userId;
+    }
 
+    public Order() {
+    }
+
+    @Id
+    @GeneratedValue
     private int id;
+
+    @Column(name = "date_create")
     private Date date;
+
+    @Column(name = "user_id")
     private int userId;
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems;
 
     public int getId() {
@@ -29,23 +40,19 @@ public class Order {
         return userId;
     }
 
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setDate(Date date) {
         this.date = date;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

@@ -3,10 +3,10 @@ package shop.learnup.shop.controllers.api.v1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import shop.learnup.shop.dao.services.ItemService;
 import shop.learnup.shop.dto.ItemDto;
 import shop.learnup.shop.mappers.interfaces.ItemMapper;
 import shop.learnup.shop.model.Item;
-import shop.learnup.shop.services.ItemService;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,7 +28,7 @@ public class ItemController {
     @GetMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Collection<ItemDto> getAllItems() {
-        final Collection<Item> allItems = service.getAllItems();
+        final Collection<Item> allItems = service.getAll();
         final List<ItemDto> result = new ArrayList<>(allItems.size());
         for (Item item : allItems) {
             result.add(itemMapper.toDto(item));
@@ -49,7 +49,7 @@ public class ItemController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ItemDto addItem(@RequestBody ItemDto itemDto) {
         return itemMapper.toDto(
-                service.add(
+                service.create(
                         itemMapper.toModel(itemDto)));
     }
 
@@ -58,7 +58,6 @@ public class ItemController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ItemDto updateItem(@PathVariable int id, @RequestBody ItemDto itemDto) {
-        itemDto.setId(id);
         return itemMapper.toDto(
                 service.update(
                         itemMapper.toModel(itemDto)));

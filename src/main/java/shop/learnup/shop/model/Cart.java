@@ -1,18 +1,27 @@
 package shop.learnup.shop.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import javax.persistence.*;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
+@Table(name = "carts")
 public class Cart {
 
+    public Cart(int userId) {
+        this.userId = userId;
+    }
+
+    public Cart() {
+    }
+
+    @Id
+    @GeneratedValue
     private int id;
+
+    @Column(name = "user_id")
     private int userId;
+
+    @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> cartItems;
 
     public int getId() {
@@ -25,10 +34,6 @@ public class Cart {
 
     public List<CartItem> getCartItems() {
         return cartItems;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setUserId(int userId) {

@@ -3,12 +3,12 @@ package shop.learnup.shop.controllers.api.v1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import shop.learnup.shop.dao.services.OrderItemService;
+import shop.learnup.shop.dao.services.OrderService;
 import shop.learnup.shop.dto.OrderDto;
 import shop.learnup.shop.mappers.interfaces.OrderItemMapper;
 import shop.learnup.shop.mappers.interfaces.OrderMapper;
 import shop.learnup.shop.model.Order;
-import shop.learnup.shop.services.OrderItemService;
-import shop.learnup.shop.services.OrderService;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,7 +34,7 @@ public class OrderController {
     @GetMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Collection<OrderDto> getAllOrders() {
-        final Collection<Order> allOrders = orderService.getAllOrders();
+        final Collection<Order> allOrders = orderService.getAll();
         final List<OrderDto> result = new ArrayList<>(allOrders.size());
         for (Order order : allOrders) {
             result.add(orderMapper.toDto(order));
@@ -55,7 +55,7 @@ public class OrderController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public OrderDto addOrder(@RequestBody OrderDto orderDto) {
         return orderMapper.toDto(
-                orderService.add(
+                orderService.create(
                         orderMapper.toModel(orderDto)));
     }
 
@@ -64,7 +64,6 @@ public class OrderController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public OrderDto updateOrder(@PathVariable int id, @RequestBody OrderDto orderDto) {
-        orderDto.setId(id);
         return orderMapper.toDto(
                 orderService.update(
                         orderMapper.toModel(orderDto)));

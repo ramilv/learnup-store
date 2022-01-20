@@ -4,7 +4,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import shop.learnup.shop.model.OrderItem;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +27,7 @@ public class OrderDto {
     private int userId;
 
     @JsonProperty
-    private List<OrderItemDto> orderItems;
+    private List<OrderItem> orderItems;
 
     public int getId() {
         return id;
@@ -36,23 +41,19 @@ public class OrderDto {
         return userId;
     }
 
-    public List<OrderItemDto> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setDate(Date date) {
         this.date = date;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrderItems(List<OrderItemDto> orderItems) {
+    public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
