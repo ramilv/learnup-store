@@ -9,6 +9,11 @@ spring:
     username: postgres
     password: sa
     driver-class-name: org.postgresql.Driver
+  activemq:
+    broker-url: tcp://localhost:61616
+    object-queue-name: storeQueue
+    packages:
+      trusted: shop.learnup.shop.domain.messages
   mail:
     host: smtp.gmail.com
     port: 587
