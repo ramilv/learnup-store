@@ -20,3 +20,6 @@ spring:
           auth: true
           starttls:
             enable: true
+auth:
+  jwt:
+    secret: "dlniknvJnksekjhBKVskhKFs"

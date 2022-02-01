@@ -8,6 +8,7 @@ import shop.learnup.shop.dto.ItemDto;
 import shop.learnup.shop.mappers.interfaces.ItemMapper;
 import shop.learnup.shop.model.Item;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -63,6 +64,7 @@ public class ItemController {
                         itemMapper.toModel(itemDto)));
     }
 
+    @RolesAllowed("USER")
     @DeleteMapping(
             value = "/{id}")
     public void delete(@PathVariable("id") int id) {
