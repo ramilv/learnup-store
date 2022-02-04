@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import shop.learnup.shopspringbootapp.services.Notificator;
 
 @Service
-@Profile("local")
 public class ConsoleNotificator extends Notificator {
 
     public void send(String toAddress, String subject, String message) {

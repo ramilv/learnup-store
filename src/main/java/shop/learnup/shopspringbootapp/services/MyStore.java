@@ -3,6 +3,7 @@ package shop.learnup.shopspringbootapp.services;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import shop.learnup.shopspringbootapp.annotations.Loggable;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ public class MyStore {
         MyStore.notificator = notificator;
     }
 
+    @Loggable
     public void start() {
         log.info("Старт приложения");
 

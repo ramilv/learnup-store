@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import shop.learnup.shopspringbootapp.services.Notificator;
 
 @Service
-@Profile("!local")
+@Profile("prod")
 public class MailNotificator extends Notificator {
     @Autowired
     public JavaMailSender emailSender;
